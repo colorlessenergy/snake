@@ -1,5 +1,28 @@
 * {
     box-sizing: border-box;
-    padding: 0;
     margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    background-color: #333333;
+}
+
+.field {
+    background-color: #222222;
+
+    height: 60%;
+    width: 60%;
+}
+
+#__next {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
 }
