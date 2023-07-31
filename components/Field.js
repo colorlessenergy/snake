@@ -11,8 +11,7 @@ const generateGrid = (cols, rows) => {
         for (let j = 0; j < rows; j++) {
             grid[i].push({
                 x: i * 50,
-                y: j * 50,
-                hasFood: false
+                y: j * 50
             });
         }
     }
