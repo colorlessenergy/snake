@@ -164,12 +164,16 @@ const Field = ({ setScore, gameOver, setGameOver }) => {
             {grid.map(col => {
                 return col.map(square => {
                     let isSnake = false;
+                    let isSnakeLeader = false;
                     for (let i = 0; i < snake.length; i++) {
                         if (
                             snake[i][0] === square.x &&
                             snake[i][1] === square.y
                         ) {
                             isSnake = true;
+                            if (i === snake.length - 1) {
+                                isSnakeLeader = true;
+                            }
                         }
                     }
 
@@ -185,6 +189,8 @@ const Field = ({ setScore, gameOver, setGameOver }) => {
                                 backgroundColor:
                                     isSnake && hasFood
                                         ? '#B7B0A2'
+                                        : isSnake && isSnakeLeader
+                                        ? '#EF767A'
                                         : isSnake
                                         ? '#8789C0'
                                         : hasFood
