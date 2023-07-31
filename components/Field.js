@@ -190,7 +190,7 @@ const Field = ({ setScore, gameOver, setGameOver }) => {
                                     isSnake && hasFood
                                         ? '#B7B0A2'
                                         : isSnake && isSnakeLeader
-                                        ? '#EF767A'
+                                        ? '#FFFFFF'
                                         : isSnake
                                         ? '#8789C0'
                                         : hasFood
