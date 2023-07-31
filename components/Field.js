@@ -20,7 +20,7 @@ const generateGrid = (cols, rows) => {
     return grid;
 };
 
-const Field = () => {
+const Field = ({ setScore }) => {
     const [grid, setGrid] = useState([]);
     const [snake, setSnake] = useState([
         [0, 0],
@@ -124,6 +124,7 @@ const Field = () => {
                 Math.floor(Math.random() * 14) * 50,
                 Math.floor(Math.random() * 7) * 50
             ]);
+            setScore(previousPoints => previousPoints + 1);
 
             return;
         }

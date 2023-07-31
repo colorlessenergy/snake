@@ -1,8 +1,11 @@
 import Head from 'next/head';
+import { useState } from 'react';
 
 import Field from '@/components/Field';
 
 export default function Home() {
+    const [score, setScore] = useState(0);
+
     return (
         <>
             <Head>
@@ -15,7 +18,9 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <Field />
+            <div className="score">{score}</div>
+
+            <Field setScore={setScore} />
         </>
     );
 }

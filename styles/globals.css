@@ -11,6 +11,7 @@ body {
 
 body {
     background-color: #333333;
+    font-family: monospace;
 }
 
 .field {
@@ -21,9 +22,19 @@ body {
     background-color: #222222;
 }
 
+.score {
+    margin-bottom: 20px;
+    width: 700px;
+
+    color: #ffffff;
+    font-size: 22px;
+    font-weight: 700;
+}
+
 #__next {
     display: flex;
     align-items: center;
+    flex-direction: column;
     justify-content: center;
     height: 100%;
 }
