@@ -1,26 +1,9 @@
 import { useEffect, useState } from 'react';
 
+import { useGrid } from '@/hooks/useGrid';
 import { cloneArray } from '@/utilities';
 
-const generateGrid = (cols, rows) => {
-    let grid = [];
-
-    for (let i = 0; i < cols; i++) {
-        grid.push([]);
-
-        for (let j = 0; j < rows; j++) {
-            grid[i].push({
-                x: i * 50,
-                y: j * 50
-            });
-        }
-    }
-
-    return grid;
-};
-
 const Field = ({ setScore, gameOver, setGameOver }) => {
-    const [grid, setGrid] = useState([]);
     const [snake, setSnake] = useState([
         [0, 0],
         [0, 50]
@@ -140,10 +123,6 @@ const Field = ({ setScore, gameOver, setGameOver }) => {
     };
 
     useEffect(() => {
-        setGrid(generateGrid(14, 7));
-    }, []);
-
-    useEffect(() => {
         if (!gameOver) {
             window.addEventListener('keydown', snakeDirection);
 
@@ -158,6 +137,8 @@ const Field = ({ setScore, gameOver, setGameOver }) => {
             };
         }
     }, [snake, direction]);
+
+    const grid = useGrid();
 
     return (
         <div className="field">
