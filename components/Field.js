@@ -24,10 +24,9 @@ const Field = () => {
     const [grid, setGrid] = useState([]);
     const [snake, setSnake] = useState([
         [0, 0],
-        [0, 50],
-        [0, 100],
-        [0, 150]
+        [0, 50]
     ]);
+    const [food, setFood] = useState([50, 200]);
 
     const [direction, setDirection] = useState(null);
     const snakeDirection = event => {
@@ -48,7 +47,8 @@ const Field = () => {
         let cloneSnake = cloneArray(snake);
         if (direction === 87) {
             for (let i = 0; i < cloneSnake.length; i++) {
-                if (cloneSnake[i][1] === 0) return;
+                if (cloneSnake[cloneSnake.length - 1][1] === 0) return;
+
                 if (
                     cloneSnake[cloneSnake.length - 1][1] - 50 ===
                     cloneSnake[cloneSnake.length - 2][1]
@@ -64,7 +64,7 @@ const Field = () => {
             }
         } else if (direction === 68) {
             for (let i = 0; i < cloneSnake.length; i++) {
-                if (cloneSnake[i][0] === 650) return;
+                if (cloneSnake[cloneSnake.length - 1][0] === 650) return;
 
                 if (
                     cloneSnake[cloneSnake.length - 1][0] + 50 ===
@@ -81,7 +81,7 @@ const Field = () => {
             }
         } else if (direction === 83) {
             for (let i = 0; i < cloneSnake.length; i++) {
-                if (cloneSnake[i][1] === 300) return;
+                if (cloneSnake[cloneSnake.length - 1][1] === 300) return;
 
                 if (
                     cloneSnake[cloneSnake.length - 1][1] + 50 ===
@@ -98,7 +98,7 @@ const Field = () => {
             }
         } else if (direction === 65) {
             for (let i = 0; i < cloneSnake.length; i++) {
-                if (cloneSnake[i][0] === 0) return;
+                if (cloneSnake[cloneSnake.length - 1][0] === 0) return;
 
                 if (
                     cloneSnake[cloneSnake.length - 1][0] - 50 ===
@@ -113,6 +113,16 @@ const Field = () => {
                     cloneSnake[i] = cloneArray(cloneSnake[i + 1]);
                 }
             }
+        }
+
+        if (
+            cloneSnake[cloneSnake.length - 1][0] === food[0] &&
+            cloneSnake[cloneSnake.length - 1][1] === food[1]
+        ) {
+            setSnake([[], ...cloneSnake]);
+            setFood([0, 0]);
+
+            return;
         }
 
         setSnake(cloneSnake);
@@ -150,11 +160,23 @@ const Field = () => {
                         }
                     }
 
+                    let hasFood = false;
+                    if (food[0] === square.x && food[1] === square.y) {
+                        hasFood = true;
+                    }
+
                     return (
                         <div
                             style={{
-                                backgroundColor: isSnake ? '#8789C0' : '',
-                                border: isSnake ? '' : '1px solid #ffffff',
+                                backgroundColor: isSnake
+                                    ? '#8789C0'
+                                    : hasFood
+                                    ? '#E9D985'
+                                    : '',
+                                border:
+                                    isSnake || hasFood
+                                        ? ''
+                                        : '1px solid #ffffff',
                                 height: '50px',
                                 width: '50px',
                                 position: 'absolute',
