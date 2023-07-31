@@ -120,7 +120,10 @@ const Field = () => {
             cloneSnake[cloneSnake.length - 1][1] === food[1]
         ) {
             setSnake([[], ...cloneSnake]);
-            setFood([0, 0]);
+            setFood([
+                Math.floor(Math.random() * 14) * 50,
+                Math.floor(Math.random() * 7) * 50
+            ]);
 
             return;
         }
