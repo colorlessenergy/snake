@@ -5,6 +5,7 @@ import Field from '@/components/Field';
 
 export default function Home() {
     const [score, setScore] = useState(0);
+    const [gameOver, setGameOver] = useState(false);
 
     return (
         <>
@@ -18,9 +19,17 @@ export default function Home() {
                 <link rel="icon" href="/favicon.ico" />
             </Head>
 
-            <div className="score">{score}</div>
+            <div className="game-info">
+                <div>{score}</div>
 
-            <Field setScore={setScore} />
+                {gameOver ? <p>game over</p> : null}
+            </div>
+
+            <Field
+                setScore={setScore}
+                gameOver={gameOver}
+                setGameOver={setGameOver}
+            />
         </>
     );
 }

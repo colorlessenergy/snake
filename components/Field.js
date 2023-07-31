@@ -20,7 +20,7 @@ const generateGrid = (cols, rows) => {
     return grid;
 };
 
-const Field = ({ setScore }) => {
+const Field = ({ setScore, gameOver, setGameOver }) => {
     const [grid, setGrid] = useState([]);
     const [snake, setSnake] = useState([
         [0, 0],
@@ -47,13 +47,15 @@ const Field = ({ setScore }) => {
         let cloneSnake = cloneArray(snake);
         if (direction === 87) {
             for (let i = 0; i < cloneSnake.length; i++) {
-                if (cloneSnake[cloneSnake.length - 1][1] === 0) return;
+                if (cloneSnake[cloneSnake.length - 1][1] === 0) {
+                    return setGameOver(true);
+                }
 
                 if (
                     cloneSnake[cloneSnake.length - 1][1] - 50 ===
                     cloneSnake[cloneSnake.length - 2][1]
                 ) {
-                    return;
+                    return setGameOver(true);
                 }
 
                 if (!cloneSnake[i + 1]) {
@@ -64,13 +66,15 @@ const Field = ({ setScore }) => {
             }
         } else if (direction === 68) {
             for (let i = 0; i < cloneSnake.length; i++) {
-                if (cloneSnake[cloneSnake.length - 1][0] === 650) return;
+                if (cloneSnake[cloneSnake.length - 1][0] === 650) {
+                    return setGameOver(true);
+                }
 
                 if (
                     cloneSnake[cloneSnake.length - 1][0] + 50 ===
                     cloneSnake[cloneSnake.length - 2][0]
                 ) {
-                    return;
+                    return setGameOver(true);
                 }
 
                 if (!cloneSnake[i + 1]) {
@@ -81,13 +85,15 @@ const Field = ({ setScore }) => {
             }
         } else if (direction === 83) {
             for (let i = 0; i < cloneSnake.length; i++) {
-                if (cloneSnake[cloneSnake.length - 1][1] === 300) return;
+                if (cloneSnake[cloneSnake.length - 1][1] === 300) {
+                    return setGameOver(true);
+                }
 
                 if (
                     cloneSnake[cloneSnake.length - 1][1] + 50 ===
                     cloneSnake[cloneSnake.length - 2][1]
                 ) {
-                    return;
+                    return setGameOver(true);
                 }
 
                 if (!cloneSnake[i + 1]) {
@@ -98,13 +104,15 @@ const Field = ({ setScore }) => {
             }
         } else if (direction === 65) {
             for (let i = 0; i < cloneSnake.length; i++) {
-                if (cloneSnake[cloneSnake.length - 1][0] === 0) return;
+                if (cloneSnake[cloneSnake.length - 1][0] === 0) {
+                    return setGameOver(true);
+                }
 
                 if (
                     cloneSnake[cloneSnake.length - 1][0] - 50 ===
                     cloneSnake[cloneSnake.length - 2][0]
                 ) {
-                    return;
+                    return setGameOver(true);
                 }
 
                 if (!cloneSnake[i + 1]) {
@@ -137,17 +145,19 @@ const Field = ({ setScore }) => {
     }, []);
 
     useEffect(() => {
-        window.addEventListener('keydown', snakeDirection);
+        if (!gameOver) {
+            window.addEventListener('keydown', snakeDirection);
 
-        const intervalID = window.setInterval(() => {
-            moveSnake();
-        }, 100);
+            const intervalID = window.setInterval(() => {
+                moveSnake();
+            }, 100);
 
-        return () => {
-            window.removeEventListener('keydown', snakeDirection);
+            return () => {
+                window.removeEventListener('keydown', snakeDirection);
 
-            clearInterval(intervalID);
-        };
+                clearInterval(intervalID);
+            };
+        }
     }, [snake, direction]);
 
     return (

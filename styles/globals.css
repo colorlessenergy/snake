@@ -11,7 +11,10 @@ body {
 
 body {
     background-color: #333333;
+    color: #ffffff;
     font-family: monospace;
+    font-size: 22px;
+    font-weight: 700;
 }
 
 .field {
@@ -22,13 +25,11 @@ body {
     background-color: #222222;
 }
 
-.score {
+.game-info {
+    display: flex;
+    justify-content: space-between;
     margin-bottom: 20px;
     width: 700px;
-
-    color: #ffffff;
-    font-size: 22px;
-    font-weight: 700;
 }
 
 #__next {
