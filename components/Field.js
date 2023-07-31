@@ -61,7 +61,7 @@ const Field = ({ setScore, gameOver, setGameOver }) => {
                 if (!cloneSnake[i + 1]) {
                     cloneSnake[i] = [cloneSnake[i][0], cloneSnake[i][1] - 50];
                 } else {
-                    cloneSnake[i] = cloneArray(cloneSnake[i + 1]);
+                    cloneSnake[i] = cloneSnake[i + 1];
                 }
             }
         } else if (direction === 68) {
@@ -80,7 +80,7 @@ const Field = ({ setScore, gameOver, setGameOver }) => {
                 if (!cloneSnake[i + 1]) {
                     cloneSnake[i] = [cloneSnake[i][0] + 50, cloneSnake[i][1]];
                 } else {
-                    cloneSnake[i] = cloneArray(cloneSnake[i + 1]);
+                    cloneSnake[i] = cloneSnake[i + 1];
                 }
             }
         } else if (direction === 83) {
@@ -99,7 +99,7 @@ const Field = ({ setScore, gameOver, setGameOver }) => {
                 if (!cloneSnake[i + 1]) {
                     cloneSnake[i] = [cloneSnake[i][0], cloneSnake[i][1] + 50];
                 } else {
-                    cloneSnake[i] = cloneArray(cloneSnake[i + 1]);
+                    cloneSnake[i] = cloneSnake[i + 1];
                 }
             }
         } else if (direction === 65) {
@@ -118,7 +118,7 @@ const Field = ({ setScore, gameOver, setGameOver }) => {
                 if (!cloneSnake[i + 1]) {
                     cloneSnake[i] = [cloneSnake[i][0] - 50, cloneSnake[i][1]];
                 } else {
-                    cloneSnake[i] = cloneArray(cloneSnake[i + 1]);
+                    cloneSnake[i] = cloneSnake[i + 1];
                 }
             }
         }
