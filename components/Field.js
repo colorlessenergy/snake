@@ -182,11 +182,14 @@ const Field = ({ setScore, gameOver, setGameOver }) => {
                         <div
                             key={square.x + square.y}
                             style={{
-                                backgroundColor: isSnake
-                                    ? '#8789C0'
-                                    : hasFood
-                                    ? '#E9D985'
-                                    : '',
+                                backgroundColor:
+                                    isSnake && hasFood
+                                        ? '#B7B0A2'
+                                        : isSnake
+                                        ? '#8789C0'
+                                        : hasFood
+                                        ? '#E9D985'
+                                        : '',
                                 border:
                                     isSnake || hasFood
                                         ? ''
