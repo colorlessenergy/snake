@@ -180,6 +180,7 @@ const Field = ({ setScore, gameOver, setGameOver }) => {
 
                     return (
                         <div
+                            key={square.x + square.y}
                             style={{
                                 backgroundColor: isSnake
                                     ? '#8789C0'
