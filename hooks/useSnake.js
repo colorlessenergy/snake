@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 
 import { cloneArray } from '@/utilities';
+import { useUserInput } from './useUserInput';
 
 export const useSnake = ({
     setScore,
@@ -14,18 +15,7 @@ export const useSnake = ({
         [0, 50]
     ]);
 
-    const [direction, setDirection] = useState(null);
-    const snakeDirection = event => {
-        if (event.keyCode === 65) {
-            setDirection(65);
-        } else if (event.keyCode === 68) {
-            setDirection(68);
-        } else if (event.keyCode === 83) {
-            setDirection(83);
-        } else if (event.keyCode === 87) {
-            setDirection(87);
-        }
-    };
+    const direction = useUserInput();
 
     const moveSnake = () => {
         if (!direction) return;
@@ -128,15 +118,11 @@ export const useSnake = ({
 
     useEffect(() => {
         if (!gameOver) {
-            window.addEventListener('keydown', snakeDirection);
-
             const intervalID = window.setInterval(() => {
                 moveSnake();
-            }, 100);
+            }, 80);
 
             return () => {
-                window.removeEventListener('keydown', snakeDirection);
-
                 clearInterval(intervalID);
             };
         }
